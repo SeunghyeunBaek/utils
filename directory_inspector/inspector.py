@@ -40,9 +40,10 @@ def get_path_dict_list(path_list:list, config:dict, splitter:str='/') -> list:
         file_name_splitted = file_name.split('.')
         ext = file_name_splitted[-1] if len(file_name_splitted) > 1 else ''
         ext_type = get_ext_type(ext, config=config)
+        size = os.path.getsize(path)
         command = f'rm {path} &&' if ext_type in removal_ext_type_list else ''
 
-        path_dict = {'path': path, 'file_name': file_name, 'ext': ext, 'ext_type': ext_type, 'command':command}
+        path_dict = {'path': path, 'file_name': file_name, 'ext': ext, 'ext_type': ext_type, 'size': size, 'command':command}
         path_dict_list.append(path_dict)
 
     path_dict_list = sorted(path_dict_list, key=lambda dict_: (dict_['ext_type'], dict_['ext'], dict_['path']))
@@ -94,7 +95,7 @@ def save_dict_to_csv(path_dict:dict, save_path:str) -> None:
 
     with open(save_path, 'w', newline='') as f:
         
-        writer = csv.DictWriter(f, fieldnames=['path', 'file_name', 'ext', 'ext_type', 'command'])
+        writer = csv.DictWriter(f, fieldnames=['path', 'file_name', 'ext', 'ext_type', 'size', 'command'])
         writer.writeheader()
         writer.writerows(path_dict)
 

@@ -1,0 +1,29 @@
+---
+#Directory inspector config
+
+extension:
+  data:
+    - csv
+    - json
+    - png
+    - jpg
+    - jpeg
+    - tif
+  weight:
+    - pt
+    - pth
+    - h5
+    - pkl
+    - pickle
+  script:
+    - py
+    - sh
+    - yml
+    - yaml
+  readme:
+    - txt
+    - md
+  etc:
+    - pyc
+    - log
+...

@@ -5,11 +5,12 @@ import sys
 import csv
 import os
 
+PRJ_DIR = os.path.dirname(__file__)
 
 def inspect_directory(inspect_dir, output_path):
 
     print(f"[{__file__}] start inspect file in '{inspect_dir}'")
-    config = load_yaml('config.yaml')
+    config = load_yaml(os.path.join(PRJ_DIR, 'config.yml'))
     print(f"[{__file__}] extract file path list in {inspect_dir}")
     path_list = get_path_list(dir_=inspect_dir)
     path_dict_list = get_path_dict_list(path_list=path_list, config=config)
